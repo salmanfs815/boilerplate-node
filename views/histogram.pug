@@ -1,0 +1,81 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/histogram.css')
+
+block content
+  div#heading
+    h1= title
+    a(href='/upload') Upload New File
+    a(href='/users/logout') Logout
+  hr
+  div#main
+    div#left
+      h3 Select cutoffs for letter grades
+      div
+        div#inputs
+          label.cutoff-label A+: 
+            input.cutoff-input#a-plus(type='number', name='a-plus', min=0, max=100, value=95)
+          label.cutoff-label A: 
+            input.cutoff-input#a(type='number', name='a', min=0, max=100, value=90)
+          label.cutoff-label A-: 
+            input.cutoff-input#a-minus(type='number', name='a-minus', min=0, max=100, value=85)
+          label.cutoff-label B+: 
+            input.cutoff-input#b-plus(type='number', name='b-plus', min=0, max=100, value=80)
+          label.cutoff-label B: 
+            input.cutoff-input#b(type='number', name='b', min=0, max=100, value=75)
+          label.cutoff-label B-: 
+            input.cutoff-input#b-minus(type='number', name='b-minus', min=0, max=100, value=70)
+          label.cutoff-label C+: 
+            input.cutoff-input#c-plus(type='number', name='c-plus', min=0, max=100, value=65)
+          label.cutoff-label C: 
+            input.cutoff-input#c(type='number', name='c', min=0, max=100, value=60)
+          label.cutoff-label C-: 
+            input.cutoff-input#c-minus(type='number', name='c-minus', min=0, max=100, value=55)
+          label.cutoff-label D: 
+            input.cutoff-input#d(type='number', name='d', min=0, max=100, value=50)
+        div#errs
+          div.cutoff-err#a-plus-err Invalid value for A+ cutoff
+          div.cutoff-err#a-err Invalid value for A cutoff
+          div.cutoff-err#a-minus-err Invalid value for A- cutoff
+          div.cutoff-err#b-plus-err Invalid value for B+ cutoff
+          div.cutoff-err#b-err Invalid value for B cutoff
+          div.cutoff-err#b-minus-err Invalid value for B- cutoff
+          div.cutoff-err#c-plus-err Invalid value for C+ cutoff
+          div.cutoff-err#c-err Invalid value for C cutoff
+          div.cutoff-err#c-minus-err Invalid value for C- cutoff
+          div.cutoff-err#d-err Invalid value for D cutoff
+    div#right
+      h3 Histogram of Class Grades
+      div#histogram
+        ul.chart
+          li
+            span.graph-bar#f-bar(title='F')
+          li
+            span.graph-bar#d-bar(title='D')
+          li
+            span.graph-bar#c-minus-bar(title='C-')
+          li
+            span.graph-bar#c-bar(title='C')
+          li
+            span.graph-bar#c-plus-bar(title='C+')
+          li
+            span.graph-bar#b-minus-bar(title='B-')
+          li
+            span.graph-bar#b-bar(title='B')
+          li
+            span.graph-bar#b-plus-bar(title='B+')
+          li
+            span.graph-bar#a-minus-bar(title='A-')
+          li
+            span.graph-bar#a-bar(title='A')
+          li
+            span.graph-bar#a-plus-bar(title='A+')
+  hr
+  div
+    button#viewReports View Student Reports
+
+block scripts
+  script const csvData = !{JSON.stringify(data)}
+  script(src='/javascripts/jquery-3.5.0.min.js')
+  script(src='/javascripts/histogram.js')

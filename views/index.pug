@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div
+    h1= title
+    form(action="/users/login", method="post")
+      label Username:
+        input#username(type="text", name="username" required autofocus)
+      br
+      label Password:
+        input#password(type="password", name="password" required)
+      br
+      button#submitBtn(type="submit") Login

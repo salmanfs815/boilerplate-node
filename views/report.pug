@@ -1,0 +1,41 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/report.css')
+
+block content
+  div#heading
+    h1= title
+    a(href='/users/logout') Logout
+    br
+    br
+    a(href='/upload') Upload New File
+    a(href='/histogram') Adjust Grade Cutoffs
+  hr
+  div#main
+    - const gradeItems = Object.keys(students[0]).filter(x => (x !== 'studentID' && x !== 'total' && x !== 'grade'))
+    table
+      thead
+        tr
+          th Student ID
+          each val in gradeItems
+            th= val[0].toUpperCase() + val.slice(1)
+          th Total Percentage
+          th Final Grade
+          th Report
+      tbody
+        each student in students.sort((a,b) => a.studentID > b.studentID)
+          tr
+            td= student.studentID
+            each item in [...gradeItems, 'total']
+              td= student[item] + ' %'
+            td= student.grade
+            td
+              a(href='/report/student?' + Object.keys(student).map(key => key + '=' + student[key]).join('&'), target='_blank') View
+              span &nbsp;
+              span &nbsp;
+              span &nbsp;
+              a(href='/report/student?' + Object.keys(student).map(key => key + '=' + student[key]).join('&') + '&print=true', target='_blank') Print
+
+block scripts
+  script const students = !{JSON.stringify(students)}

@@ -1,0 +1,15 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/upload.css')
+
+block content
+  div#heading
+    h1= title
+    a(href='/users/logout') Logout
+  hr
+  div
+    form(action='/histogram', method='post', encType='multipart/form-data')
+      label Choose CSV File: 
+        input#csv(type='file', accept='.csv', name='csv' required)
+      button#uploadBtn(type="submit") Upload

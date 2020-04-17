@@ -1,0 +1,87 @@
+#heading a {
+  margin: 1em;
+}
+
+hr {
+  margin-top: 2em;
+}
+
+h3 {
+  text-align: center;
+}
+
+.cutoff-input {
+  width: 3em;
+  margin: 0.5em;
+}
+
+.cutoff-err {
+  height: 1.5em;
+  margin: 1em;
+  color: white; /* hidden */
+}
+
+#main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#left {
+  width: 30%;
+}
+
+#left>div {
+  display: flex;
+  flex-direction: row;
+}
+
+#right {
+  width: 70%
+}
+
+#histogram {
+  width: 100%;
+  height: 350px;
+}
+
+.chart {
+  display: table;
+  table-layout: fixed;
+  width: 60%;
+  margin: 0 auto;
+  background-size: 100% 50px;
+  background-position: left top;
+}
+
+.chart li {
+  position: relative;
+  display: table-cell;
+  vertical-align: bottom;
+  height: 350px;
+}
+
+.chart span {
+  margin: 0 1em;
+  display: block;
+  background: rgba(209, 236, 250, .75);
+  animation: draw 1s ease-in-out;
+}
+
+.chart span:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  padding: 5px 1em 0;
+  display: block;
+  text-align: center;
+  content: attr(title);
+  word-wrap: break-word;
+}
+
+@keyframes draw {
+  0% {
+    height: 0;
+  }
+}

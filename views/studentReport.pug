@@ -1,0 +1,41 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/studentReport.css')
+
+block content
+  div#content
+    div#heading
+      h1= title
+    button#print Print Report
+    hr
+    table
+      thead
+        tr
+          th Activity
+          th Grade
+      tbody
+        each key in Object.keys(data).filter(x => (x !== 'studentID' && x !== 'total' && x !== 'grade'))
+          tr
+            td= key[0].toUpperCase() + key.slice(1)
+            td= data[key] + ' %'
+    hr#total
+    table
+      tbody
+        tr
+          td Final Percentage
+          td= data['total'] + ' %'
+        tr
+          td
+            strong Letter Grade
+          td
+            strong= data['grade']
+
+
+block scripts
+  script const data = !{JSON.stringify(data)}
+  script(src='/javascripts/jquery-3.5.0.min.js')
+  script(src='/javascripts/studentReport.js')
+  - if (data.print) {
+    script window.print()
+  - }

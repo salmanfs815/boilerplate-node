@@ -1,0 +1,25 @@
+#content {
+  align-content: center;
+}
+
+table {
+  margin: auto;
+}
+
+th, td {
+  padding: 0.5em 2em;
+}
+
+hr#total {
+  width: 25%;
+}
+
+td:last-child {
+  text-align: center;
+}
+
+@media print {
+  button#print {
+    display: none;
+  }
+}
